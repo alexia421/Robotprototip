@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.math;
+package org.firstinspires.ftc.teamcode.Math;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;

@@ -1,4 +1,5 @@
-package org.firstinspires.ftc.teamcode.math;
+package org.firstinspires.ftc.teamcode.Math;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -8,28 +9,28 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Config
 
+@Config
 @TeleOp(name = "holdVel")
 public class holdVel_TEST extends LinearOpMode {
 
     public static String  MOTOR_NAME   = "shooter";
     public static String  VOLTAGE_NAME = "Control Hub";
 
-    public static double  KP = 0.00130;
+    public static double  KP = 0.0010;
     public static double  KI = 0.0000;
-    public static double  KD = 0.00010;
+    public static double  KD = 0.00012;
 
     public static double  KS = 0.05;
-    public static double  KV = 1.0 / 2400.0; //AGNOSTICISM
+    public static double  KV = 1.0 / 2800.0; //AGNOSTICISM
     public static double  KA = 0.0;
 
-    public static double  ALPHA    = 0.25;;   // velocity filter ( adica 0..1)
-    public static double  SLEW     = 1.0;    // power UPS
-    public static double  MAX_I    = 0.4;    // integral clamp
+    public static double  ALPHA    = 0;   // velocity filter ( adica 0..1)
+    public static double  SLEW     = 6.0;    // power UPS
+    public static double  MAX_I    = 0;    // integral clamp
     public static double  MAX_PWR  = 1.0;    // powr clamp
 
-    public static double  TARGET_TPS = 2400;
+    public static double  TARGET_TPS = 1500;
 
     @Override
     public void runOpMode() {
@@ -66,6 +67,7 @@ public class holdVel_TEST extends LinearOpMode {
                 double power  = motor.getPower();           // pow
                 double error  = TARGET_TPS - vel;
                 double volts  = (battery != null) ? battery.getVoltage() : 0.0;
+
                 telemetry.addLine("=== Velocity Hold Tuning ===");
                 telemetry.addData("Target (tps)", "%.0f", TARGET_TPS);
                 telemetry.addData("Measured (tps)", "%.0f", vel);
@@ -91,4 +93,3 @@ public class holdVel_TEST extends LinearOpMode {
         task.stop();
     }
 }
-

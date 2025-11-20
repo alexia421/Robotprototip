@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.math;
+package org.firstinspires.ftc.teamcode.Math;
 
 public class trajectory_Interpolation {
     public enum Mode {
