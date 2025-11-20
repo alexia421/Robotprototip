@@ -32,8 +32,6 @@ public class TeleOp extends LinearOpMode {
 
 
             teleOpActions.handleControls(gamepad1, gamepad2);
-            drive.updatePoseEstimate();
-            Pose2d pose2d = drive.localizer.getPose();
 
 
             telemetry.addData("Shooter Vel", mecanisme.shooter.getVelocity());
