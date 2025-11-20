@@ -17,17 +17,17 @@ public class holdVel_TEST extends LinearOpMode {
     public static String  MOTOR_NAME   = "shooter";
     public static String  VOLTAGE_NAME = "Control Hub";
 
-    public static double  KP = 0.0010;
-    public static double  KI = 0.0000;
-    public static double  KD = 0.00012;
+    public static double  KP = 0.085;
+    public static double  KI = 0;
+    public static double  KD = 0;
 
-    public static double  KS = 0.05;
-    public static double  KV = 1.0 / 2800.0; //AGNOSTICISM
-    public static double  KA = 0.0;
+    public static double  KS = 0.09;
+    public static double  KV = 0.1; //AGNOSTICISM
+    public static double  KA = 0;
 
-    public static double  ALPHA    = 0;   // velocity filter ( adica 0..1)
-    public static double  SLEW     = 6.0;    // power UPS
-    public static double  MAX_I    = 0;    // integral clamp
+    public static double  ALPHA    = 0.2;   // velocity filter ( adica 0..1)
+    public static double  SLEW     = 4;    // power UPS
+    public static double  MAX_I    = 0.00002;    // integral clamp
     public static double  MAX_PWR  = 1.0;    // powr clamp
 
     public static double  TARGET_TPS = 1500;
@@ -46,7 +46,6 @@ public class holdVel_TEST extends LinearOpMode {
         DcMotorEx motor = hardwareMap.get(DcMotorEx.class, MOTOR_NAME);
         VoltageSensor battery = null;
         try { battery = hardwareMap.get(VoltageSensor.class, VOLTAGE_NAME); } catch (Exception ignored) {}
-
         ElapsedTime loop = new ElapsedTime();
         ElapsedTime telm = new ElapsedTime();
         double lastT = 0;
@@ -54,15 +53,16 @@ public class holdVel_TEST extends LinearOpMode {
         waitForStart();
         loop.reset();
         telm.reset();
-
+///0.00043
         while (opModeIsActive()) {
+            task.setTargetTps(TARGET_TPS);
             double now = loop.seconds();
             double dt  = now - lastT;
             if (dt <= 0) dt = 1e-3;
 
             task.step();
 
-            if (telm.seconds() >= 0.10) {
+
                 double vel    = motor.getVelocity();        // TPS
                 double power  = motor.getPower();           // pow
                 double error  = TARGET_TPS - vel;
@@ -85,7 +85,6 @@ public class holdVel_TEST extends LinearOpMode {
                 telemetry.addData("dt (ms)", "%.1f", dt * 1000.0);
                 telemetry.update();
                 telm.reset();
-            }
 
             lastT = now;
         }
