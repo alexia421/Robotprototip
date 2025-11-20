@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.math;
-
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -32,6 +33,7 @@ public class holdVel_TEST extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         VelocityHoldTask task = new VelocityHoldTask(
                 hardwareMap, MOTOR_NAME,
                 KP, KI, KD,
@@ -64,7 +66,6 @@ public class holdVel_TEST extends LinearOpMode {
                 double power  = motor.getPower();           // pow
                 double error  = TARGET_TPS - vel;
                 double volts  = (battery != null) ? battery.getVoltage() : 0.0;
-
                 telemetry.addLine("=== Velocity Hold Tuning ===");
                 telemetry.addData("Target (tps)", "%.0f", TARGET_TPS);
                 telemetry.addData("Measured (tps)", "%.0f", vel);
