@@ -23,7 +23,7 @@ public class holdVel_TEST extends LinearOpMode {
 
     public static double  KS = 0.09;
     public static double  KV = 0.1; //AGNOSTICISM
-    public static double  KA = 0;
+    public static double  KA = 0;   
 
     public static double  ALPHA    = 0.2;   // velocity filter ( adica 0..1)
     public static double  SLEW     = 4;    // power UPS
