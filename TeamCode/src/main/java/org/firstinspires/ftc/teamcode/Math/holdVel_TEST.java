@@ -93,3 +93,4 @@ public class holdVel_TEST extends LinearOpMode {
         task.stop();
     }
 }
+// cine o vede pula in cur si o ia
