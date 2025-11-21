@@ -43,6 +43,7 @@ public class VelocityHoldTask {
 
     public void setTargetTps(double tps) { ctrl.setTargetTps(tps); }
     public double getTargetTps() { return ctrl.getTargetTps(); }
+    public double getCurrentTps() { return motor.getVelocity(); }
 
     public void step() {
         double now = timer.seconds();
