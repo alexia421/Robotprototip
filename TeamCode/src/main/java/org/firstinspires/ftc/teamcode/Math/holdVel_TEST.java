@@ -18,16 +18,16 @@ public class holdVel_TEST extends LinearOpMode {
     public static String  VOLTAGE_NAME = "Control Hub";
 
     public static double  KP = 0.085;
-    public static double  KI = 0;
-    public static double  KD = 0;
+    public static double  KI = 0.0000010;
+    public static double  KD = 0.00003;
 
     public static double  KS = 0.09;
-    public static double  KV = 0.1; //AGNOSTICISM
+    public static double  KV = 0.00050; //original 0.1
     public static double  KA = 0;   
 
     public static double  ALPHA    = 0.2;   // velocity filter ( adica 0..1)
     public static double  SLEW     = 4;    // power UPS
-    public static double  MAX_I    = 0.00002;    // integral clamp
+    public static double  MAX_I    = 0.2;    // integral clamp
     public static double  MAX_PWR  = 1.0;    // powr clamp
 
     public static double  TARGET_TPS = 1500;
@@ -56,7 +56,9 @@ public class holdVel_TEST extends LinearOpMode {
 ///0.00043
         while (opModeIsActive()) {
 
+
             task.setTargetTps(TARGET_TPS);
+
             double now = loop.seconds();
             double dt  = now - lastT;
             if (dt <= 0) dt = 1e-3;
@@ -93,4 +95,3 @@ public class holdVel_TEST extends LinearOpMode {
         task.stop();
     }
 }
-// cine o vede pula in cur si o ia

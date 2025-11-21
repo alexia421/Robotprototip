@@ -15,7 +15,7 @@ public class PIDFVelocityController {
     private double lastTargetTps = 0.0;
     private double lastPower = 0.0;
     private double velFilt = 0.0;
-    private final double alpha;
+    public  double alpha;
     private final VoltageSensor battery;
 
 
